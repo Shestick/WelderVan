@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danila Doe - Master Welder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Danila Doe - Master Welder</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#request">Request Services</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <img src="PersonNotExist1.jpeg" alt="John Doe" class="profile-img">
+            <p>Hi, I'm John Doe, a professional welder with over 15 years of experience. I specialize in TIG, MIG, and stick welding for various industries including automotive, construction, and artistic metalwork. My passion for precision and creativity allows me to tackle complex projects and deliver outstanding results.</p>
+        </section>
+        <section id="services" class="section">
+            <h2>Services</h2>
+            <ul class="services-list">
+                <li><a href="structural-welding.html">Structural Welding</a></li>
+                <li><a href="pipe-welding.html">Pipe Welding</a></li>
+                <li><a href="custom-metalwork.html">Custom Metalwork</a></li>
+                <li><a href="welding-repairs.html">Welding Repairs</a></li>
+                <li><a href="fabrication.html">Fabrication</a></li>
+                <li><a href="art-sculpture.html">Metal Art and Sculpture</a></li>
+            </ul>
+        </section>
+        <section id="portfolio" class="section">
+            <h2>Portfolio</h2>
+            <div class="gallery">
+                <a href="portfolio_1.html"><img src="2024-11-10_11-10-10.png" alt="Industrial Pipeline Project"></a>
+                <a href="portfolio_2.html"><img src="2024-11-10_11-10-42.png" alt="Custom Metal Staircase"></a>
+                <a href="portfolio_3.html"><img src="2024-11-10_11-11-14.png" alt="Structural Steel for Commercial Building"></a>
+                <a href="portfolio_4.html"><img src="2024-11-10_11-11-29.png" alt="Metal Art Installation"></a>
+            </div>
+        </section>
+        <section id="testimonials" class="section">
+            <h2>Testimonials</h2>
+            <div class="testimonial">
+                <p>"John's team demonstrated exceptional skill in handling our complex pipeline project. Their attention to detail and commitment to quality were outstanding."</p>
+                <p class="author">- Jane Smith, Project Manager at IndustryCorp</p>
+            </div>
+            <div class="testimonial">
+                <p>"The craftsmanship and attention to detail in this sculpture are phenomenal. It's a centerpiece for the community and a true work of art."</p>
+                <p class="author">- Emily Carter, City Art Coordinator</p>
+            </div>
+        </section>
+        <section id="contact" class="section">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <p>Email: Vanya@gmail.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Location: Anytown, USA</p>
+            </div>
+        </section>
+        <section id="request" class="section">
+            <h2>Request Our Services</h2>
+            <form id="serviceRequestForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span id="emailError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <span id="phoneError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Request our services</button>
+                </div>
+            </form>
+            <div id="formMessage"></div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 John Doe Welding. All rights reserved.</p>
+    </footer>
+
+    <button id="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a');
+            const scrollToTopButton = document.getElementById('scroll-to-top');
+            const serviceRequestForm = document.getElementById('serviceRequestForm');
+            const formMessage = document.getElementById('formMessage');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const emailError = document.getElementById('emailError');
+            const phoneError = document.getElementById('phoneError');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    targetElement.scrollIntoView({behavior: 'smooth'});
+                });
+            });
+
+            function toggleScrollToTopButton() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopButton.style.opacity = '1';
+                } else {
+                    scrollToTopButton.style.opacity = '0';
+                }
+            }
+
+            window.addEventListener('scroll', toggleScrollToTopButton);
+
+            scrollToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function validatePhone(phone) {
+                const re = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+                return re.test(String(phone));
+            }
+
+            let emailTimer;
+            let phoneTimer;
+
+            emailInput.addEventListener('input', function() {
+                clearTimeout(emailTimer);
+                emailError.textContent = ""; // Clear error message when typing starts
+                emailTimer = setTimeout(() => {
+                    if (!validateEmail(this.value)) {
+                        emailError.textContent = "Please enter a valid email address";
+                    } else {
+                        emailError.textContent = "";
+                    }
+                }, 3000);
+            });
+
+            emailInput.addEventListener('blur', function() {
+                clearTimeout(emailTimer);
+                if (!validateEmail(this.value)) {
+                    emailError.textContent = "Please enter a valid email address";
+                } else {
+                    emailError.textContent = "";
+                }
+            });
+
+            phoneInput.addEventListener('input', function() {
+                clearTimeout(phoneTimer);
+                phoneError.textContent = ""; // Clear error message when typing starts
+                phoneTimer = setTimeout(() => {
+                    if (!validatePhone(this.value)) {
+                        phoneError.textContent = "Please enter a valid phone number";
+                    } else {
+                        phoneError.textContent = "";
+                    }
+                }, 3000);
+            });
+
+            phoneInput.addEventListener('blur', function() {
+                clearTimeout(phoneTimer);
+                if (!validatePhone(this.value)) {
+                    phoneError.textContent = "Please enter a valid phone number";
+                } else {
+                    phoneError.textContent = "";
+                }
+            });
+
+            serviceRequestForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = emailInput.value;
+                const phone = phoneInput.value;
+
+                if (validateEmail(email) && validatePhone(phone)) {
+                    formMessage.textContent = "Your request is accepted, we will contact you soon";
+                    formMessage.className = "success";
+                    serviceRequestForm.reset();
+                    emailError.textContent = "";
+                    phoneError.textContent = "";
+                } else {
+                    formMessage.textContent = "Please enter valid email and phone number";
+                    formMessage.className = "error";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
