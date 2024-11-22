@@ -148,7 +148,7 @@
 
             emailInput.addEventListener('input', function() {
                 clearTimeout(emailTimer);
-                emailError.textContent = ""; // Clear error message when typing starts
+                emailError.textContent = "";
                 emailTimer = setTimeout(() => {
                     if (!validateEmail(this.value)) {
                         emailError.textContent = "Please enter a valid email address";
@@ -169,7 +169,7 @@
 
             phoneInput.addEventListener('input', function() {
                 clearTimeout(phoneTimer);
-                phoneError.textContent = ""; // Clear error message when typing starts
+                phoneError.textContent = "";
                 phoneTimer = setTimeout(() => {
                     if (!validatePhone(this.value)) {
                         phoneError.textContent = "Please enter a valid phone number";
