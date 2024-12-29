@@ -117,14 +117,23 @@ nav ul li a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    min-height: 400px; /* Minimum height for the gallery */
 }
 
 .gallery img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
     border-radius: 8px;
     transition: transform 0.3s ease;
+}
+
+.gallery.single-image {
+    grid-template-columns: 1fr 1fr;
+}
+
+.gallery.single-image img {
+    grid-column: 1 / 2;
 }
 
 .gallery img:hover {
@@ -331,3 +340,59 @@ footer {
     margin: 15px 0;
 }
 
+.fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(150, 150, 150, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+body.fullscreen-active {
+    overflow: hidden;
+}
+
+body.fullscreen-active > *:not(.fullscreen-container) {
+    filter: blur(5px);
+}
+
+html {
+    overflow-y: scroll;
+}
+
+.fullscreen-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fullscreen-nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.fullscreen-nav-button.previous-image {
+    left: 20px;
+}
+
+.fullscreen-nav-button.next-image {
+    right: 20px;
+}

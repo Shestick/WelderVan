@@ -8,6 +8,7 @@
     <link rel="icon" href="https://raw.githubusercontent.com/Shestick/WelderVan/refs/heads/main/Kuvshinov128.png" sizes="128x128">
     <title>Покрас дисков, ремонт</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="js/fullscreen-image.js"></script>
 </head>
 <body>
     <header>
@@ -42,5 +43,23 @@
     <footer>
         <p>&copy; 2024 Alex Loginov. All rights reserved.</p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.querySelector('.gallery');
+            const images = gallery.querySelectorAll('img');
+            
+            if (images.length === 1) {
+                gallery.classList.add('single-image');
+            } else if (images.length === 2) {
+                gallery.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            }
+            
+            if (images.length <= 2) {
+                images.forEach(img => {
+                    img.style.height = '400px';
+                });
+            }
+        });
+    </script>
 </body>
 </html>

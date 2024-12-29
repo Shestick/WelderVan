@@ -8,6 +8,7 @@
     <link rel="icon" href="https://raw.githubusercontent.com/Shestick/WelderVan/refs/heads/main/Kuvshinov128.png" sizes="128x128">
     <title>Востановление Самоката</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="js/fullscreen-image.js"></script>
 </head>
 <body>
     <header>
@@ -28,7 +29,7 @@
             <h2>Восстановление Самоката</h2>
             <p>Проект по перекраске деталей, потерявших презентабельный вид</p>
             <div class="gallery">
-                <img src="Portfolio Resources/Vanya2.1.jpg" alt="">
+                <img src="Portfolio Resources/Vanya2.1.jpg" alt="Восстановление Самоката">
             </div>
             <div class="review">
                 <p>"Обратился к Александру с нестандартным заказом по подкраске рычагов, дисков и руля самоката. Работа была выполнена качественно, с учётом всех пожеланий, теперь внешней вид деталей близок к новым. Особенно приятным был ответственный подход к работе: диски удалось покрасить не с первого раза из-за того, что во время запекания краски начинала правиться изолента, ограничивающая область покраски. Для решения этого вопроса Александр заказал новую термостойкую изоленту, а диски были заново перекрашены. Рекомендую смело обращаться к ребятам, сам очень доволен результатом!"</p>
@@ -39,5 +40,23 @@
     <footer>
         <p>&copy; 2024 Alex Loginov. All rights reserved.</p>
     </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const gallery = document.querySelector('.gallery');
+        const images = gallery.querySelectorAll('img');
+        
+        if (images.length === 1) {
+            gallery.classList.add('single-image');
+        } else if (images.length === 2) {
+            gallery.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        }
+        
+        if (images.length <= 2) {
+            images.forEach(img => {
+                img.style.height = '400px';
+            });
+        }
+    });
+</script>
 </body>
 </html>
