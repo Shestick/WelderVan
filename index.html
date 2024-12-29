@@ -35,12 +35,30 @@
         <section id="services" class="section">
             <h2>Услуги</h2>
             <ul class="services-list">
-                <li><a href="structural-welding.html">Электро-Дуговая сварка</a></li>
-                <li><a href="pipe-welding.html">Аргонная сварка</a></li>
-                <li><a href="custom-metalwork.html">TIG</a></li>
-                <li><a href="welding-repairs.html">MIG сварка</a></li>
-                <li><a href="fabrication.html">MMA сварка</a></li>
-                <!-- <li><a href="art-sculpture.html">Metal Art and Sculpture</a></li> -->
+                <li>
+                    <div class="service-header">Электро-Дуговая сварка</div>
+                    <div class="service-description">
+                        <p>Электро-дуговая сварка - это процесс соединения металлов с использованием электрической дуги. Этот метод идеально подходит для сварки толстых металлов и выполнения работ в различных положениях.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-header">Аргонная сварка(TIG)</div>
+                    <div class="service-description">
+                        <p>TIG (Tungsten Inert Gas) - Сварка неплавящимся вольфрамовым электродом с использованием инертного газа аргона для защиты шва от окисления. Применяется для высокоточных работ и тонких металлов.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-header">MIG сварка</div>
+                    <div class="service-description">
+                        <p>MIG (Metal Inert Gas) - Сварка плавящимся электродом (проволокой), подающимся автоматически, в среде инертного газа. Подходит для быстрой работы с тонкими и средними металлами.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="service-header">MMA сварка</div>
+                    <div class="service-description">
+                        <p>MMA (Manual Metal Arc) - Ручная дуговая сварка с использованием покрытых электродов. Универсальный метод, подходит для работы в любых условиях, включая открытый воздух.</p>
+                    </div>
+                </li>
             </ul>
         </section>
         <section id="portfolio" class="section">
@@ -207,7 +225,33 @@
                     formMessage.className = "error";
                 }
             });
+
+            const serviceHeaders = document.querySelectorAll('.service-header');
+            let activeService = null;
+
+            serviceHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const description = this.nextElementSibling;
+                    const isActive = description.style.maxHeight;
+
+                    if (activeService && activeService !== description) {
+                        activeService.style.maxHeight = null;
+                        activeService.previousElementSibling.classList.remove('active');
+                    }
+
+                    if (isActive) {
+                        description.style.maxHeight = null;
+                        this.classList.remove('active');
+                        activeService = null;
+                    } else {
+                        description.style.maxHeight = description.scrollHeight + "px";
+                        this.classList.add('active');
+                        activeService = description;
+                    }
+                });
+            });
         });
     </script>
 </body>
 </html>
+
